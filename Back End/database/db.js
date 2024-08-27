@@ -6,11 +6,11 @@ const config = {
     server: 'DESKTOP-USCB1HM',
     database: 'Library',
     options: {
-        trustedConnection: true, // Use Windows Authentication
-        encrypt: false, // Adjust if encryption is required
-        trustServerCertificate: true, // Use true for development
-        enableArithAbort: true, // Required to support BigInt data type
-        instancename: 'SQLEXPRESS' // Specify SQL Server instance name
+        trustedConnection: true, 
+        encrypt: false, 
+        trustServerCertificate: true, 
+        enableArithAbort: true, 
+        instancename: 'SQLEXPRESS' 
     },
     port: 1433 
 };
