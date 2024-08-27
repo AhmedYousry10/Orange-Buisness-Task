@@ -11,6 +11,9 @@ Library/.angular/
 Library/coverage/
 Library/src/environments/*.ts
 Library/src/environments/environment*.ts
+Library/node_modules/
+Library/npm-debug.log
+Library/yarn-error.log
 
 # IDEs and Editors
 .idea/
