@@ -1,16 +1,19 @@
-# Node.js
-node_modules/
-npm-debug.log
-yarn-error.log
-package-lock.json
-yarn.lock
+# Node.js in the back end folder
+back end/node_modules/
+back end/npm-debug.log
+back end/yarn-error.log
+back end/package-lock.json
+back end/yarn.lock
 
-# Angular
-dist/
-.angular/
-coverage/
-src/environments/*.ts
-src/environments/environment*.ts
+# Angular in the Library folder
+Library/dist/
+Library/.angular/
+Library/coverage/
+Library/src/environments/*.ts
+Library/src/environments/environment*.ts
+Library/node_modules/
+Library/npm-debug.log
+Library/yarn-error.log
 
 # IDEs and Editors
 .idea/
@@ -60,8 +63,8 @@ temp/
 *.tgz
 
 # Database files
-*.sql
-*.sqlite
+database backup/*.sql
+database backup/*.sqlite
 
 # Coverage directory used by tools like istanbul
 coverage/
@@ -80,4 +83,3 @@ ehthumbs.db
 *.pem
 *.key
 *.crt
-
