@@ -1,0 +1,15 @@
+<div class="container my-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-center">
+        <img [src]="book.Image || defaultImage" class="img-fluid " alt="{{ book.Title }}">
+      </div>
+      <h2 class="mb-4">Title: <strong>{{ book.Title }}</strong></h2>
+      <p><strong>Author:</strong> {{ book.AuthorName }}</p>
+      <p class="mb-4"><strong>Description:</strong> {{ book.Description }}</p>
+
+      <button class="btn btn-secondary" (click)="updateBook()">Edit Book</button>
+      <button class="btn btn-danger ms-2" (click)="deleteBook()">Delete Book</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container my-4">
+  <!-- Search Bar -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-8">
+      <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Search for a book by title">
+    </div>
+  </div>
+
+  <!-- Books List -->
+  <div class="row">
+    <div *ngFor="let book of filteredBooks()" class="col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card h-100">
+        <img [src]="book.Image || defaultImage" class="card-img-top" alt="{{ book.Title }}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ book.Title }}</h5>
+          <p class="card-text text-muted">by {{ book.AuthorName }}</p>
+          <a [routerLink]="['/bookDetails', book.BookID]" class="btn btn-primary mt-auto">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
