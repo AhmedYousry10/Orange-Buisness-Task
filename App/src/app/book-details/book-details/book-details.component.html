@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-md-12">
       <div class="d-flex justify-content-center">
-        <img [src]="book.Image || defaultImage" class="img-fluid " alt="{{ book.Title }}">
+        <!-- <img [src]="book.Image || defaultImage" class="img-fluid " alt="{{ book.Title }}"> -->
+        <img [src]="getBookImageUrl(book.Image)" class="card-img-top" alt="{{ book.Title }}">
       </div>
       <h2 class="mb-4">Title: <strong>{{ book.Title }}</strong></h2>
       <p><strong>Author:</strong> {{ book.AuthorName }}</p>

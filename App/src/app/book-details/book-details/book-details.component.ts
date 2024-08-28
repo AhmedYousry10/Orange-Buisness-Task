@@ -23,6 +23,7 @@ import Swal from 'sweetalert2';
 export class BookDetailsComponent implements OnInit {
   book: Book = {} as Book;
   defaultImage = 'assets/images/defaultImage.jpg';
+  baseUrl = 'http://localhost:4000/uploads/'; // base url for images
 
   constructor(
     private route: ActivatedRoute,
@@ -88,6 +89,14 @@ export class BookDetailsComponent implements OnInit {
           console.error('Error updating book:', error);
         }
       );
+    }
+  }
+
+  getBookImageUrl(imageFileName: string | null): string {
+    if (imageFileName) {
+      return `${this.baseUrl}${imageFileName}`;
+    } else {
+      return this.defaultImage;
     }
   }
 

@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   books: Book[] = [];
   searchTerm: string = '';
   defaultImage = 'assets/images/defaultImage.jpg';
+  baseUrl = 'http://localhost:4000/uploads/'; // base url for images
 
   constructor(private bookService: BookService) {}
 
@@ -44,5 +45,13 @@ export class HomeComponent implements OnInit {
     return this.books.filter((book) =>
       book.Title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+  }
+
+  getBookImageUrl(imageFileName: string | null): string {
+    if (imageFileName) {
+      return `${this.baseUrl}${imageFileName}`;
+    } else {
+      return this.defaultImage;
+    }
   }
 }

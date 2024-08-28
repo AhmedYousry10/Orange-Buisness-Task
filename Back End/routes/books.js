@@ -2,6 +2,22 @@ const express = require('express');
 const sql = require('mssql');
 const router = express.Router();
 const { config } = require('../database/db');
+const multer = require('multer');
+const path = require('path');
+
+// Configure multer to use the uploads folder
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        // Define where to save the uploaded files
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        // Define the name of the file
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
 
 // Define get all books route
 router.get('/', async (req, res) => {
@@ -44,8 +60,9 @@ router.get('/:id', async (req, res) => {
 });
 
 // Define ADD book route (retaining /addbook)
-router.post('/addbook', async (req, res) => {
+router.post('/addbook', upload.single('image'), async (req, res) => {
     const { Title, Description, AuthorID } = req.body;
+    const image = req.file ? req.file.filename : null;
 
     if (!Title || !Description || !AuthorID) {
         return res.status(400).json({ error: 'Title, Description, and AuthorID are required' });
@@ -57,13 +74,15 @@ router.post('/addbook', async (req, res) => {
             .input('Title', sql.NVarChar, Title)
             .input('Description', sql.NVarChar, Description)
             .input('AuthorID', sql.Int, AuthorID)
-            .query('INSERT INTO Books (Title, Description, AuthorID) VALUES (@Title, @Description, @AuthorID)');
+            .input('Image', sql.NVarChar, image)
+            .query('INSERT INTO Books (Title, Description, AuthorID, Image) VALUES (@Title, @Description, @AuthorID, @Image)');
         res.status(201).json({ message: 'Book added successfully' });
     } catch (err) {
         console.error('Database query error:', err.message);
         res.status(500).json({ error: 'Server error' });
     }
 });
+
 
 // Define Edit book route (retaining /editbook/:id)
 router.put('/editbook/:id', async (req, res) => {

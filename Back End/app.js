@@ -2,12 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const booksRoutes = require('./routes/books'); 
 const authorsRoutes = require('./routes/Authors'); 
+const path = require('path');
+
 
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Use the /api/books routes
 app.use('/api/books', booksRoutes); 
